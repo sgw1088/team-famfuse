@@ -1,0 +1,30 @@
+<h1>Welcome! Please sign up</h1>
+
+<form id="signup" name="signup" method="POST" action="/users/register">
+    <div>
+        <label for="name">First Name: </label>
+        <input type="text" name="firstName" required>
+    </div>
+    <div>
+        <label for="name">Last Name: </label>
+        <input type="text" name="lastName" required>
+    </div>
+    <div>
+        <label for="name">Email: </label>
+        <input type="text" name="email" required>
+    </div>
+    <div>
+        <label for="usertype">User Type:</label>
+        <div>
+            <input type="radio" name="usertype" value="child">Child<br />
+            <input type="radio" name="usertype" value="Parent">Parent<br />
+        </div>
+    </div>
+    <div>
+        <label for="name">Password: </label>
+        <input type="text" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
