@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
+
 const sqlite = require('sqlite3').verbose();
 var models = require('../models');
-const connectEnsure = require('connect-ensure-login');
+
 const auth = require("../config/auth");
 
 /* GET users listing. */

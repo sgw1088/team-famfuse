@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+textarea {
+  width: 400px;
+  height: 100px;
+}
+.posts {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 5px;
+}
