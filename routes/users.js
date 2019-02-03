@@ -48,7 +48,7 @@ router.post('/register',function(req,res,next) {
               console.log(userId);
               const token = auth.signUser(createdUser);
               res.cookie('jwt', token);
-              res.redirect('profile/' + userId);
+              res.send(JSON.stringify(createdUser));
             } else {
               console.error('not a match');
             }
@@ -71,7 +71,7 @@ router.post('/register',function(req,res,next) {
               console.log(userId);
               const token = auth.signUser(createdUser);
               res.cookie('jwt', token);
-              res.redirect('profile/' + userId);
+              res.send(JSON.stringify(createdUser));
             } else {
               console.error('not a match');
             }
@@ -102,7 +102,8 @@ router.post('/login', function (req, res, next) {
       const userId = user.userId
       const token = auth.signUser(user);
       res.cookie('jwt', token);
-      res.redirect('profile/' + userId)
+      res.send(JSON.stringify(user));
+      res.render('/profile/' + userId)
     } else {
       console.log(req.body.password);
       res.redirect('/users/login')
