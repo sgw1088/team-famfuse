@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
 const sqlite = require('sqlite3').verbose();
 var models = require('../models');
-
+const jwt = require('jsonwebtoken');
 const auth = require("../config/auth");
+const bcrypt = require('bcrypt');
 
+process.env.SECRET_KEY = 'secret'
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   models.users
@@ -92,11 +93,11 @@ router.post('/login', function (req, res, next) {
   const hashedPassword = auth.hashPassword(req.body.password);
   models.users.findOne({
     where: {
-      email: req.body.username
+      email: req.body.email
     }
   }).then(user => {
-    const isMatch = user.comparePassword(req.body.password)
-
+     const isMatch = user.comparePassword(req.body.password)
+      console.log(isMatch)
     if (!user) {
       return res.status(401).json({
         message: "Login Failed"
@@ -106,11 +107,11 @@ router.post('/login', function (req, res, next) {
       const userId = user.userId
       const token = auth.signUser(user);
       res.cookie('jwt', token);
-      res.send(JSON.stringify(user));
-      res.render('/profile/' + userId)
+      res.send(token);
+      
     } else {
-      console.log(req.body.password);
-      res.redirect('/users/login')
+      console.log(error);
+      // res.redirect('/users/login')
     }
 
   });

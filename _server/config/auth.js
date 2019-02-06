@@ -1,13 +1,17 @@
 const jwt = require('jsonwebtoken');
 const models = require('../models/index');
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 module.exports = {
     signUser: function(user) {
         const token = jwt.sign(
             {
-              username: user.username,
               userId: user.userId,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              familyCode: user.familyCode,
+              isLoggedIn: true
             },
             'secret',
             {

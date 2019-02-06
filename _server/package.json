@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.2.1",
     "connect-ensure-login": "^0.1.1",
