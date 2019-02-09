@@ -27,7 +27,7 @@ router.post('/register',function(req,res,next) {
   models.users
     .findOne({
       where: {
-        Username: req.body.username
+        email: req.body.email
       }
     })
     .then(user => {
@@ -35,15 +35,16 @@ router.post('/register',function(req,res,next) {
         res.send('this user already exists');
       } else {
         const code = Math.random().toString(36).substr(2, 9) + req.body.lastName;
-        if(req.body.usertype == 'parent' && req.body.createfamily == 'true') {
+        
           models.users
           .create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userType: req.body.usertype,
+            childUser: req.body.childUser,
+            parentUser: req.body.parentUser,
             email: req.body.email,
             password: hashedPassword,
-            familyCode: code,
+            familyCode: req.body.familyCode,
             username: req.body.email
           })
           .then(createdUser => {
@@ -53,38 +54,17 @@ router.post('/register',function(req,res,next) {
               console.log(userId);
               const token = auth.signUser(createdUser);
               res.cookie('jwt', token);
-              res.send(JSON.stringify(createdUser));
-            } else {
-              console.error('not a match');
-            }
-          });
-        } else {
-          models.users
-          .create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            userType: req.body.usertype,
-            email: req.body.email,
-            password: hashedPassword,
-            familyCode: req.body.familycode,
-            username: req.body.email
-          })
-          .then(createdUser => {
-            const isMatch = createdUser.comparePassword(req.body.password);
-            if (isMatch) {
-              const userId = createdUser.userId;
-              console.log(userId);
-              const token = auth.signUser(createdUser);
-              res.cookie('jwt', token);
-              res.send(JSON.stringify(createdUser));
+              res.send(JSON.stringify(token));
             } else {
               console.error('not a match');
             }
           });
         }
-      }
-    });
-});
+      })
+    })
+        
+  
+      
       
 
 

@@ -14,7 +14,6 @@ class ProfileComponent extends React.Component {
     componentDidMount() {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        console.log(jwt_decode(token))
         this.setState({
             firstName: decoded.firstName,
             lastName: decoded.lastName,

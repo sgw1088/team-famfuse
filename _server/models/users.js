@@ -17,9 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: true
       },
-      userType: { 
-          type: DataTypes.STRING,
-          allowNull: false },
+      childUser: DataTypes.STRING,
+      parentUser: DataTypes.STRING,
       password: {
           type: DataTypes.STRING,
           allowNull: false },

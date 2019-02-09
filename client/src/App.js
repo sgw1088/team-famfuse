@@ -11,7 +11,12 @@ import Calendar from './screens/Calendar';
 import Todo from './screens/Todo';
 
 
+
 const MainMenu = () => {
+  function logout(e) {
+    e.preventDefault()
+    localStorage.removeItem('usertoken')
+  }
   return (
 
   <div>
@@ -36,7 +41,7 @@ const MainMenu = () => {
     <Link to="/calendar">
       <button>Calendar</button>
     </Link>
-    
+    <button onClick={logout}>Logout</button>
    
   </div>
   );
