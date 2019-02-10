@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
     res.send(JSON.stringify(allUsers));
   })
 });
+
+
 router.get('/login', function(req,res,next) {
   res.render('login');
 })
@@ -93,7 +95,6 @@ router.post('/login', function (req, res, next) {
       console.log(error);
       // res.redirect('/users/login')
     }
-
   });
 });
 
@@ -132,5 +133,51 @@ router.get('/logout', function (req, res) {
   res.cookie('jwt', null);
   res.redirect('/users/login');
 });
+
+
+// To DO CRUD
+
+
+router.get('/todos', function(req, res, next) {
+  models.todos.findAll({})
+  .then(allTodos => {
+    res.send(JSON.stringify(allTodos));
+  })
+
+}
+);
+
+router.post('/todos', function(req, res, next) {
+  models.todos
+    .findOrCreate({
+      where: {
+        todoName: req.body.todoName,
+        todoDetails: req.body.todoDetails,
+        dueDate: req.body.dueDate
+      }
+    })
+    .spread(function(result, created) {
+      if (created) {
+      res.redirect('/todos');
+      } else {
+        res.send('This To Do Already Exists')
+      }
+    });
+});
+
+router.get('/todos/:id', (req, res) => {
+  let todoId = parseInt(req.params.id);
+  models.todos
+  .find({
+    where: {
+      todoId: todoId
+    },
+  })
+  .then(todo => {
+    
+    res.send(JSON.stringify(todo))
+  })
+});
+
 
 module.exports = router;
