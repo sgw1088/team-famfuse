@@ -51,7 +51,7 @@ class RegisterForm extends React.Component {
         }
         register(user).then(res => {
             if(res) {
-            console.log(res)
+           
             this.props.history.push('/profile');
             }
         }).catch(err => {

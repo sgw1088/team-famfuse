@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
         }
         login(user).then(res => {
             if(res) {
-            console.log(res)
+     
             this.props.history.push('/profile');
             }
         }).catch(err => {
