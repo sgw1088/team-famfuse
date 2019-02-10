@@ -1,5 +1,6 @@
 import React from 'react';
 import {register} from './userfunctions';
+import { withRouter } from "react-router-dom";
 
 class RegisterForm extends React.Component {
     constructor() {
@@ -48,11 +49,13 @@ class RegisterForm extends React.Component {
                 createFamily: this.state.createFamily
             }
         }
-        alert('This is your family code. Share this with your family to link your family. ' + user.familyCode)
         register(user).then(res => {
             if(res) {
             console.log(res)
+            this.props.history.push('/profile');
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
     render() {
@@ -96,4 +99,4 @@ class RegisterForm extends React.Component {
         )
     }
 }
-export default RegisterForm;
+export default withRouter(RegisterForm);
