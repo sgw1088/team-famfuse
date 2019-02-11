@@ -9,6 +9,7 @@ import Profile from './screens/Profile';
 import Register from './screens/Register';
 import Calendar from './screens/Calendar';
 import Todos from './screens/Todos';
+import Tododetails from './components/tododetails';
 
 
 
@@ -69,6 +70,7 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/calendar" component={Calendar} />
           <Route exact path="/todos" component={Todos} />
+          <Route exact path="/todos/:id" component={Tododetails} />
           <Route exact path="/photoalbum" component={PhotoAlbum} />
       </div>
       </div>
