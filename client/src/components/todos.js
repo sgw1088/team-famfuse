@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -28,9 +28,10 @@ class Todos extends React.Component {
     if (this.state.todoData.length === 0) {
       return <div>Failed to fetch data from server</div>;
     }
+    
     const todo = this.state.todoData.map(todos => (
       <div key={todos.todoId}>
-       <h3>{todos.todoId} - {todos.todoName}:</h3>
+       <Link to={{pathname:`todos/${todos.todoId}` }}><h3>{todos.todoId} - {todos.todoName}:</h3></Link>
         <p>{todos.todoStatus}</p>
       </div>
      
