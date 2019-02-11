@@ -15,36 +15,48 @@ class Tododetails extends React.Component {
         })
       })
     }
-  // fetchTodoData = () => {
-  //   var encodedURI = window.encodeURI(this.props.uri);
-  //   return axios.get(encodedURI).then(response => {
-  //     this.setState(() => {
-  //       return {
-  //         todoData: response.data
-  //       };
-  //     });
-  //   });
-  // };
 
   componentDidMount() {
     this.fetchTodoData();
   }
+
+  
 
   render() {
     console.log(this.state.todoData);
     if (this.state.todoData.length === 0) {
       return <div>Failed to fetch data from server</div>;
     } else {
-    //  const todo = this.state.todoData.map(todos => (
-      
+  
       return <div key={this.state.todoData.todoId}>
                 <h1>{this.state.todoData.todoName}</h1>: 
                     {this.state.todoData.todoDetails} 
                     {this.state.todoData.dueDate} 
-              <em><b>{this.state.todoData.todoStatus}</b></em>
+              <b>{this.state.todoData.todoStatus}</b>
+             
+<form action="/users/todos/:id" method="PUT" >
+  <div>
+      <label for="name">To Do Name: </label>
+      <input type="text" name="todoName" id="todoName" value={this.state.todoData.todoName} />
+  </div>
+  <div>
+      <label for="name">Details: </label>
+      <input type="text" name="todoDetails" id="todoDetails" value={this.state.todoData.todoDetails}  />
+  </div>
+  <div>
+      <label for="name">Due Date: </label>
+      <input type="text" name="dueDate" id="dueDate" value={this.state.todoData.dueDate} />
+  </div>
+  <div>
+      <label for="name">Status: </label>
+      <input type="text" name="todoStatus" id="todoStatus" value={this.state.todoData.todoStatus}  />
+  </div>
+  <div>
+      <button type="submit" id="submitButton">Update To Do</button>
+  </div>
+</form>
         </div>
-    // ));
-  //   return <div>{todo}</div>;
+   
    }
   }
 }

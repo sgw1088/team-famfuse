@@ -179,5 +179,27 @@ router.get('/todos/:id', (req, res) => {
   })
 });
 
+router.put('/todos/:id', (req, res) => {
+  let todoId = parseInt(req.params.id);
+  models.todos
+    .update(
+      {
+        todoName: req.body.todoName,
+        todoDetails: req.body.todoDetails,
+        dueDate: req.body.dueDate,
+        todoStatus: req.body.todoStatus,
+      },
+      {
+        where: {
+          TodoId: todoId
+        }
+      }
+    )
+    .then(result => {
+      res.send(JSON.stringify(result));
+    });
+});
+
 
 module.exports = router;
+
