@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const login = user => {
     return axios
     .post('http://localhost:3001/users/login', {
@@ -37,5 +38,13 @@ export const register = user => {
     })
     .catch(err => {
         console.log(err)
+    })
+}
+export const imageUpload = image => {
+    return axios
+    .post('http://localhost:3001/newimage', {
+        userId: image.userId,
+        familyCode: image.familyCode,
+        image: image.image
     })
 }

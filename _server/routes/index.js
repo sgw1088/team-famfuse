@@ -31,7 +31,12 @@ router.get('/feed', auth.verifyUser, function(req, res, next) {
   })
 })
 router.post('/newimage', upload.single('image'), function(req,res,next) {
-  console.log(req.image)
+  models.images
+  .create({
+    userId: req.body.userId,
+    file: req.file.name,
+    familyCode: req.body.familyCode
+  })
 })
 router.post('/newpost', auth.verifyUser, function(req, res, next){
   console.log(req.body.file);

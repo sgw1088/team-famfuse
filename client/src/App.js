@@ -18,6 +18,7 @@ const MainMenu = () => {
     e.preventDefault()
     localStorage.removeItem('usertoken')
   }
+  
   return (
 
   <div>

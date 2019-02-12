@@ -25,6 +25,9 @@
   margin: auto;
   width: 50%;
 }
+.form-group {
+  text-align: center;
+}
 
 @keyframes App-logo-spin {
   from {
