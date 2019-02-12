@@ -1,8 +1,9 @@
 import React from 'react';
+import PhotoAlbumComponent from '../components/photoalbum';
 
 const PhotoAlbum = () => (
   <div>
-    <h2>Photo Album</h2>
+    <PhotoAlbumComponent />
   </div>
 );
 

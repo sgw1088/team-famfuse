@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-
+const server = "http://localhost:3001/";
 export const login = user => {
     return axios
-    .post('http://localhost:3001/users/login', {
+    .post(server + 'users/login', {
         email: user.email,
         password: user.password
     })
@@ -19,7 +19,7 @@ export const login = user => {
 
 export const register = user => {
     return axios
-    .post('http://localhost:3001/users/register', {
+    .post(server + 'users/register', {
         firstName: user.firstName,
         lastName: user.lastName,
         familyCode: user.familyCode,
@@ -40,11 +40,36 @@ export const register = user => {
         console.log(err)
     })
 }
-export const imageUpload = image => {
+export const imageUpload = post => {
+    console.log(post)
     return axios
-    .post('http://localhost:3001/newimage', {
-        userId: image.userId,
-        familyCode: image.familyCode,
-        image: image.image
+    
+    .post(server + 'newimage', {
+        userId: post.userId,
+        familyCode: post.familyCode,
+        image: post.image
+    })
+    
+}
+
+export const fetchFamilyImages = (familyCode, userId) => {
+    
+    return axios
+    .post(server + 'familyphotos', {
+        familyCode: familyCode,
+        userId: userId
+
+    }).then(res => {
+        return res.data;
+    })
+}
+export const fetchMyImages = user => {
+    
+    return axios
+    .post(server + 'myphotos', {
+        userId: user
+
+    }).then(res => {
+        return res.data;
     })
 }

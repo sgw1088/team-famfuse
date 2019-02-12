@@ -29,6 +29,22 @@
   text-align: center;
 }
 
+/* Photo Album */
+.familyImgsCon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.familyPhotos {
+  width: 100%;
+  height: 100%;
+}
+.imageCon {
+  width: 33%;
+  height: 30vh;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -30,14 +30,18 @@ router.get('/feed', auth.verifyUser, function(req, res, next) {
     });
   })
 })
-router.post('/newimage', upload.single('image'), function(req,res,next) {
+router.post('/newimage', function(req,res,next) {
+  
   models.images
   .create({
     userId: req.body.userId,
-    file: req.file.name,
+    file: req.body.image,
     familyCode: req.body.familyCode
+  }).then(uploaded => {
+    res.send(uploaded)
   })
 })
+
 router.post('/newpost', auth.verifyUser, function(req, res, next){
   console.log(req.body.file);
   models.feeds
@@ -50,6 +54,31 @@ router.post('/newpost', auth.verifyUser, function(req, res, next){
     username: req.user.username
   }).then(post => {
       res.redirect('feed'); 
+  })
+})
+
+//get family photos
+router.post('/familyphotos', function(req, res, next) {
+  models.images
+  .findAll({
+    where: {
+      familyCode: req.body.familyCode,
+      not: {
+      userId: req.body.userId
+      }
+    }
+  }).then(photos => {
+    res.send(photos)
+  })
+})
+router.post('/myphotos', function(req, res, next) {
+  models.images
+  .findAll({
+    where: {
+      userId: req.body.userId
+    }
+  }).then(photos => {
+    res.send(photos)
   })
 })
 
