@@ -12,7 +12,9 @@ class PhotoAlbumComponent extends React.Component {
             image: null,
             url: '',
             familyImages: [],
-            myImages: []
+            myImages: [],
+            uploadImages: null,
+            upload: null
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -54,8 +56,13 @@ class PhotoAlbumComponent extends React.Component {
                 }
         
                 imageUpload(post)
-                console.log(this.state.url)
+                fetchMyImages(decoded.userId).then(res => {
+                    this.setState({
+                        myImages: res
+                    })
+                })          
             })
+        
         })
     }
 
@@ -79,6 +86,9 @@ class PhotoAlbumComponent extends React.Component {
         })          
     }
 }
+
+
+
     
     render() {
         const myImage = this.state.myImages.map(myImages => (
@@ -95,13 +105,15 @@ class PhotoAlbumComponent extends React.Component {
         return (
             <div>
                  <div>
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                          <label htmlFor="Image">Upload Photo</label><br />
-                          <input type="file" className="form-control-file" onChange={this.handleChange} name="file" id="image" required></input>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+                 <div> 
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="Image">Upload Photo</label><br />
+                    <input type="file" className="form-control-file" onChange={this.handleChange} name="file" id="image" required></input>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+        </div>
                 </div>
                 <h1>My Photos</h1>
                 <div className="familyImgsCon">

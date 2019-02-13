@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 const server = "http://localhost:3001/";
+
+//Login and Logout
 export const login = user => {
     return axios
     .post(server + 'users/login', {
@@ -17,6 +20,8 @@ export const login = user => {
     })
 }
 
+
+//Register
 export const register = user => {
     return axios
     .post(server + 'users/register', {
@@ -40,10 +45,10 @@ export const register = user => {
         console.log(err)
     })
 }
+
+//Photo Album
 export const imageUpload = post => {
-    console.log(post)
     return axios
-    
     .post(server + 'newimage', {
         userId: post.userId,
         familyCode: post.familyCode,
@@ -51,9 +56,7 @@ export const imageUpload = post => {
     })
     
 }
-
 export const fetchFamilyImages = (familyCode, userId) => {
-    
     return axios
     .post(server + 'familyphotos', {
         familyCode: familyCode,
@@ -64,7 +67,6 @@ export const fetchFamilyImages = (familyCode, userId) => {
     })
 }
 export const fetchMyImages = user => {
-    
     return axios
     .post(server + 'myphotos', {
         userId: user

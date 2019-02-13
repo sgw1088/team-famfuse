@@ -9,16 +9,14 @@ import Profile from './screens/Profile';
 import Register from './screens/Register';
 import Calendar from './screens/Calendar';
 import Todo from './screens/Todo';
-
+import Logout from './components/logout';
 
 
 
 const MainMenu = () => {
-  function logout(e) {
-    e.preventDefault()
-    localStorage.removeItem('usertoken')
+  window.ondeforeunload = () => {
+    localStorage.clear();
   }
-  
   return (
 
   <div>
@@ -43,7 +41,7 @@ const MainMenu = () => {
     <Link to="/calendar">
       <button>Calendar</button>
     </Link>
-    <button onClick={logout}>Logout</button>
+    <Logout />
    
   </div>
   );
