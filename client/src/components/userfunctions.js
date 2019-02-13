@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
-
+import {jwt_decoded} from "jwt-decode";
 const server = "http://localhost:3001/";
 
 //Login and Logout
@@ -48,6 +48,7 @@ export const register = user => {
 
 //Photo Album
 export const imageUpload = post => {
+    
     return axios
     .post(server + 'newimage', {
         userId: post.userId,
@@ -55,6 +56,13 @@ export const imageUpload = post => {
         image: post.image
     })
     
+}
+export const checkAuth = (password) => {
+    const token = localStorage.userToken;
+    const decoded = jwt_decoded(token);
+    if(decoded.password === password) {
+        return true;
+    }
 }
 export const fetchFamilyImages = (familyCode, userId) => {
     return axios

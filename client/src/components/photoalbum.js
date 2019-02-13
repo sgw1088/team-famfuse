@@ -50,6 +50,7 @@ class PhotoAlbumComponent extends React.Component {
                 const token = localStorage.usertoken
                 const decoded = jwt_decode(token)
                 const post = {
+                    password: decoded.password,
                     userId: decoded.userId,
                     familyCode: decoded.familyCode,
                     image: imageUrl
