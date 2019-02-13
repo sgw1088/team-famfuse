@@ -15,13 +15,11 @@ router.get('/', function(req, res, next) {
     res.send(JSON.stringify(allUsers));
   })
 });
-router.get('/login', function(req,res,next) {
-  res.render('login');
-})
+
+//Register
 router.get('/register',function(req,res,next) {
   res.render('register');
 })
-
 router.post('/register',function(req,res,next) {
   const hashedPassword = auth.hashPassword(req.body.password);
   models.users
@@ -67,8 +65,10 @@ router.post('/register',function(req,res,next) {
       
       
 
-
-
+//Login
+router.get('/login', function(req,res,next) {
+  res.render('login');
+})
 router.post('/login', function (req, res, next) {
   const hashedPassword = auth.hashPassword(req.body.password);
   models.users.findOne({
