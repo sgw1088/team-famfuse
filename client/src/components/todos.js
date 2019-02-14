@@ -30,10 +30,13 @@ class Todos extends React.Component {
     }
     
     const todo = this.state.todoData.map(todos => (
+     
       <div key={todos.todoId}>
        <Link to={{pathname:`todos/${todos.todoId}` }}><h3>{todos.todoId} - {todos.todoName}:</h3></Link>
+    
         <p>{todos.todoStatus}</p>
       </div>
+     
      
     ));
     return <div>{todo}</div>;

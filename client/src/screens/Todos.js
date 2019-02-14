@@ -8,12 +8,14 @@ import Todos from '../components/todos'
 const Todo = () => (
  
   <div>
+     
    <div>
     <h1>To Do List</h1>
-    
+   
       <Todos uri="http://localhost:3001/users/todos" />
     
     </div>
+    
     <h1>Add a To Do Item!</h1>
 <div>
 <form action="/users/todos" method="POST">
