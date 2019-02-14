@@ -36,20 +36,20 @@ class Tododetails extends React.Component {
              
 <form action="/users/todos/:id" method="PUT" >
   <div>
-      <label for="name">To Do Name: </label>
-      <input type="text" name="todoName" id="todoName" value={this.state.todoData.todoName} />
+      <label htmlFor="todoName">To Do Name: </label>
+      <input type="text" name="todoName" id="todoName" defaultValue={this.state.todoData.todoName} />
   </div>
   <div>
-      <label for="name">Details: </label>
-      <input type="text" name="todoDetails" id="todoDetails" value={this.state.todoData.todoDetails}  />
+      <label htmlFor="todoDetails">Details: </label>
+      <input type="text" name="todoDetails" id="todoDetails" defaultValue={this.state.todoData.todoDetails}  />
   </div>
   <div>
-      <label for="name">Due Date: </label>
-      <input type="text" name="dueDate" id="dueDate" value={this.state.todoData.dueDate} />
+      <label htmlFor="dueDate">Due Date: </label>
+      <input type="text" name="dueDate" id="dueDate" defaultValue={this.state.todoData.dueDate} />
   </div>
   <div>
-      <label for="name">Status: </label>
-      <input type="text" name="todoStatus" id="todoStatus" value={this.state.todoData.todoStatus}  />
+      <label htmlFor="todoStatus">Status: </label>
+      <input type="text" name="todoStatus" id="todoStatus" defaultValue={this.state.todoData.todoStatus}  />
   </div>
   <div>
       <button type="submit" id="submitButton">Update To Do</button>
