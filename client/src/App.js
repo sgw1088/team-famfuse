@@ -8,8 +8,9 @@ import PhotoAlbum from './screens/PhotoAlbum';
 import Profile from './screens/Profile';
 import Register from './screens/Register';
 import Calendar from './screens/Calendar';
-import Todo from './screens/Todo';
 import Logout from './components/logout';
+import Todos from './screens/Todos';
+import Tododetails from './components/tododetails';
 
 
 
@@ -23,7 +24,7 @@ const MainMenu = () => {
     <Link to="/">
       <button>Home</button>
     </Link>
-    <Link to="/Register">
+    <Link to="/register">
       <button>Register</button>
     </Link>
     <Link to="/login">
@@ -35,8 +36,8 @@ const MainMenu = () => {
     <Link to="/photoalbum">
       <button>Photo Album</button>
     </Link>
-    <Link to="/todo">
-      <button>ToDo</button>
+    <Link to="/todos">
+      <button>ToDos</button>
     </Link>
     <Link to="/calendar">
       <button>Calendar</button>
@@ -68,7 +69,8 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/calendar" component={Calendar} />
-          <Route exact path="/todo" component={Todo} />
+          <Route exact path="/todos" component={Todos} />
+          <Route exact path="/todos/:id" component={Tododetails} />
           <Route exact path="/photoalbum" component={PhotoAlbum} />
       </div>
       </div>
