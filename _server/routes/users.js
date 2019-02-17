@@ -140,7 +140,11 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/todos', function(req, res, next) {
-  models.todos.findAll({})
+  models.todos.findAll({
+    where: {
+      deleted: null
+    }
+  })
   .then(allTodos => {
     res.send(JSON.stringify(allTodos));
   })
@@ -172,6 +176,7 @@ router.get('/todos/:id', (req, res) => {
   .find({
     where: {
       todoId: todoId
+      
     },
   })
   .then(todo => {
@@ -183,8 +188,7 @@ router.get('/todos/:id', (req, res) => {
 router.put('/todos/:id', (req, res) => {
   let todoId = parseInt(req.params.id);
   models.todos
-    .update(
-      {
+    .update({
         todoName: req.body.todoName,
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
@@ -192,13 +196,32 @@ router.put('/todos/:id', (req, res) => {
       },
       {
         where: {
-          TodoId: todoId
+          todoId: todoId
         }
       }
     )
-    .then(result => {
-      res.send(JSON.stringify(result));
+    .then(todo => {
+      res.send(JSON.stringify(todo));
     });
+});
+
+router.delete('/todos/:id/delete', (req, res) => {
+let todoId = parseInt(req.params.id);
+models.todos
+.update(
+  {
+    Deleted: 'true'
+  },
+  {
+    where: {
+      todoId: todoId
+    }
+  }
+)
+.then (todo => {
+  res.send(JSON.stringify(todo))
+})
+
 });
 
 
