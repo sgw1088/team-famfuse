@@ -57,12 +57,13 @@ export const imageUpload = post => {
     })
     
 }
-export const checkAuth = (password) => {
+ export const checkAuth = (password) => {
     const token = localStorage.userToken;
     const decoded = jwt_decoded(token);
     if(decoded.password === password) {
         return true;
     }
+
 }
 export const fetchFamilyImages = (familyCode, userId) => {
     return axios

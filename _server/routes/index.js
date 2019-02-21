@@ -82,4 +82,8 @@ router.post('/myphotos', function(req, res, next) {
   })
 })
 
+router.post('/getauth', auth.verifyUser, function (req, res, next) {
+
+})
+
 module.exports = router;

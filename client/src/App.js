@@ -13,7 +13,6 @@ import Todos from './screens/Todos';
 import Tododetails from './components/tododetails';
 
 
-
 const MainMenu = () => {
   window.ondeforeunload = () => {
     localStorage.clear();
@@ -67,10 +66,10 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile" component={Profile}/>
           <Route exact path="/calendar" component={Calendar} />
-          <Route exact path="/todos" component={Todos} />
-          <Route exact path="/todos/:id" component={Tododetails} />
+          <Route exact path="/todos" component={Todos}/>
+          <Route exact path="/todos/:id" component={Tododetails}  />
           <Route exact path="/photoalbum" component={PhotoAlbum} />
       </div>
       </div>

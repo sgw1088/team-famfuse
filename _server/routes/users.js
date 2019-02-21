@@ -140,6 +140,7 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/todos', function(req, res, next) {
+ 
   models.todos.findAll({
     where: {
       deleted: null
@@ -152,21 +153,31 @@ router.get('/todos', function(req, res, next) {
 }
 );
 
-router.post('/todos', function(req, res, next) {
-  models.todos
-    .findOrCreate({
+router.post('/todos', (req, res) => {
+  let userId = parseInt(req.user.userId);
+  models.users
+    .findAll({
       where: {
-        todoName: req.body.todoName,
-        todoDetails: req.body.todoDetails,
-        dueDate: req.body.dueDate
+        userId: userId
       }
     })
     .spread(function(result, created) {
-      if (created) {
-      res.redirect('/todos');
-      } else {
-        res.send('This To Do Already Exists')
-      }
+      models.todos
+        .findOrCreate({
+          where: {
+        todoName: req.body.todoName,
+        todoDetails: req.body.todoDetails,
+        dueDate: req.body.dueDate,
+	      
+          }
+        })
+        .spread(function(result, created) {
+          if (created) {
+            res.redirect('/todos');
+          } else {
+            res.send('This album already exists!');
+          }
+        });
     });
 });
 
@@ -178,6 +189,7 @@ router.get('/todos/:id', (req, res) => {
       todoId: todoId
       
     },
+    include: [models.users]
   })
   .then(todo => {
     
@@ -193,13 +205,14 @@ router.put('/todos/:id', (req, res) => {
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
         todoStatus: req.body.todoStatus,
+        userId: req.body.userId
       },
       {
         where: {
           todoId: todoId
-        }
-      }
-    )
+        },
+        include: [models.users]
+      })
     .then(todo => {
       res.send(JSON.stringify(todo));
     });
@@ -215,9 +228,9 @@ models.todos
   {
     where: {
       todoId: todoId
-    }
-  }
-)
+    },
+    include: [models.users]
+  })
 .then (todo => {
   res.send(JSON.stringify(todo))
 })

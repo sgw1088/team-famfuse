@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 },
   );
   todos.associate = function(models) {
-    todos.hasMany(models.users, {
+    todos.belongsTo(models.users, {
         foreignKey: 'userId'
     });
   };
