@@ -2,12 +2,12 @@ import axios from 'axios';
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import {jwt_decode} from 'jwt-decode';
+
 class UserAuth extends React.Component {
     constructor() {
         super()
         this.state = {
-            email: '',
-            password: ''
+            isLoggedin: null
         }
     }
     auth(event) {
@@ -16,18 +16,10 @@ class UserAuth extends React.Component {
             let token = localStorage.userToken;
             let decoded = jwt_decode(token)
             this.setState({
-                email: decoded.email,
-                password: decoded.password
+                isLoggedin: decoded.isLoggedin
             })
-            return axios 
-            .post("http://localhost:3001/users/checkauth", {
-                email: this.state.email,
-                password: this.state.password
-            }).then(res => {
-                if(res.data !== null) {
-                    this.props.history.push()
-                }
-            })
+            console.log(this.state.isLoggedin)
+            
         }
     }
 }

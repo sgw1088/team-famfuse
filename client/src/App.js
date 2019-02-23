@@ -17,6 +17,7 @@ const MainMenu = () => {
   window.ondeforeunload = () => {
     localStorage.clear();
   }
+  
   return (
 
   <div>
