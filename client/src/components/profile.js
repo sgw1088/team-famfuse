@@ -1,7 +1,7 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode';
-import { imageUpload } from './userfunctions';
-import {storage} from '../firebase/index';
+import auth from '../components/auth';
+import { withRouter } from "react-router-dom";
 
 class ProfileComponent extends React.Component {
     constructor() {
@@ -16,6 +16,12 @@ class ProfileComponent extends React.Component {
         }
    
     }
+    componentWillMount() { 
+        if(auth() === false) {
+            this.props.history.push('/login');
+        }
+    }
+    
     handleChange(event) {
        if(event.target.files[0]) {
            const image = event.target.files[0];
@@ -50,4 +56,4 @@ class ProfileComponent extends React.Component {
         )
     }
 }
-export default ProfileComponent;
+export default withRouter(ProfileComponent);

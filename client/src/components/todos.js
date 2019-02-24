@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import auth from '../components/auth';
+import { withRouter } from "react-router-dom";
 
 class Todos extends React.Component {
   state = {
@@ -18,7 +19,11 @@ class Todos extends React.Component {
       });
     });
   };
-
+  componentWillMount() { 
+    if(auth() === false) {
+        this.props.history.push('/login');
+    }
+}
   componentDidMount() {
     this.fetchTodoData();
   }
@@ -40,4 +45,4 @@ class Todos extends React.Component {
   }
 }
 
-export default Todos;
+export default withRouter(Todos);

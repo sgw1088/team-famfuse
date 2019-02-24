@@ -1,12 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import $ from 'jquery'; 
-
+import auth from '../components/auth';
+import { withRouter } from "react-router-dom";
 
 class Tododetails extends React.Component {
   state = {
     todoData: {}
   };
+  componentWillMount() { 
+    if(auth() === false) {
+        this.props.history.push('/login');
+    }
+}
     fetchTodoData = () => {
       let todoId = this.props.match.params.id
       return axios
@@ -87,4 +93,4 @@ class Tododetails extends React.Component {
   }
 }
 
-export default Tododetails;
+export default withRouter(Tododetails);
