@@ -4,6 +4,8 @@ import axios from 'axios';
 import auth from '../components/auth';
 import { withRouter } from "react-router-dom";
 
+import jwt_decode from 'jwt-decode';
+
 class Todos extends React.Component {
   state = {
     todoData: []
@@ -19,12 +21,15 @@ class Todos extends React.Component {
       });
     });
   };
+
+
   componentWillMount() { 
     if(auth() === false) {
         this.props.history.push('/login');
     }
 }
   componentDidMount() {
+ 
     this.fetchTodoData();
   }
 
@@ -37,7 +42,7 @@ class Todos extends React.Component {
     const todo = this.state.todoData.map(todos => (
      
       <div key={todos.todoId}>
-       <Link to={{pathname:`todos/${todos.todoId}` }}><p><b>{todos.todoName}</b>: {todos.todoStatus}</p></Link></div>
+       <Link to={{pathname:`todos/${todos.todoId}` }}><p><b>{todos.userId}{todos.todoName}</b>: {todos.todoStatus}</p></Link></div>
      
      
     ));

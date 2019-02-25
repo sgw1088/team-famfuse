@@ -138,13 +138,16 @@ router.get('/logout', function (req, res) {
 
 // To DO CRUD
 
-
-router.get('/todos', function(req, res, next) {
+router.get('/todos',  function(req, res, next) {
  
-  models.todos.findAll({
+  models.todos
+  .findAll({
     where: {
-      deleted: null
-    }
+      deleted: null,
+     
+      
+    },
+    include: [models.users]
   })
   .then(allTodos => {
     res.send(JSON.stringify(allTodos));
@@ -153,23 +156,17 @@ router.get('/todos', function(req, res, next) {
 }
 );
 
+
 router.post('/todos', (req, res) => {
-  let userId = parseInt(req.user.userId);
-  models.users
-    .findAll({
-      where: {
-        userId: userId
-      }
-    })
-    .spread(function(result, created) {
-      models.todos
-        .findOrCreate({
+ 
+  models.todos
+    .findOrCreate({
           where: {
         todoName: req.body.todoName,
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
-	      
-          }
+          },
+          include: [models.users]
         })
         .spread(function(result, created) {
           if (created) {
@@ -177,7 +174,7 @@ router.post('/todos', (req, res) => {
           } else {
             res.send('This album already exists!');
           }
-        });
+        
     });
 });
 
@@ -186,7 +183,7 @@ router.get('/todos/:id', (req, res) => {
   models.todos
   .find({
     where: {
-      todoId: todoId
+      todoId: todoId,
       
     },
     include: [models.users]
@@ -205,13 +202,12 @@ router.put('/todos/:id', (req, res) => {
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
         todoStatus: req.body.todoStatus,
-        userId: req.body.userId
       },
       {
         where: {
           todoId: todoId
         },
-        include: [models.users]
+       
       })
     .then(todo => {
       res.send(JSON.stringify(todo));
@@ -229,13 +225,14 @@ models.todos
     where: {
       todoId: todoId
     },
-    include: [models.users]
+  
   })
 .then (todo => {
   res.send(JSON.stringify(todo))
 })
 
 });
+
 
 
 module.exports = router;
