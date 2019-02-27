@@ -77,9 +77,12 @@ class Tododetails extends React.Component {
      <input type="text" name="dueDate" id="dueDate" defaultValue={this.state.todoData.dueDate} />
  </div>
  <div>
-     <label htmlFor="todoStatus">Status: </label>
-     <input type="text" name="todoStatus" id="todoStatus" defaultValue={this.state.todoData.todoStatus}  />
- </div>
+        <label htmlFor="todoStatus">Status </label>
+        <select  name="todoStatus" id="todoStatus" defaultValue={this.state.todoData.todoStatus}>
+        <option value="pending" >Pending</option>
+        <option value="completed">Completed</option>
+        </select>
+    </div>
  <div>
      <button type="submit" id="submitButton">Update</button>
     <button onClick={this.onDelete} type="deleteButton" id="deleteButton">Delete</button>

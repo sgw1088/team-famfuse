@@ -138,15 +138,25 @@ router.get('/logout', function (req, res) {
 
 // To DO CRUD
 
-router.get('/todos',  function(req, res, next) {
+router.get('/profile/:id/todos', function(req, res, next) {
  
+ models.users
+ .findAll ({
+   where: {
+     userId: req.params.userId,
+   }
+ })
+ .spread(function(req, res, next) {
   models.todos
   .findAll({
     where: {
       deleted: null,
+    
      
       
     },
+ })
+  
     include: [models.users]
   })
   .then(allTodos => {
@@ -157,14 +167,16 @@ router.get('/todos',  function(req, res, next) {
 );
 
 
-router.post('/todos', (req, res) => {
+router.post('/todos',  (req, res) => {
  
   models.todos
     .findOrCreate({
           where: {
+        userId: req.body.userId,
         todoName: req.body.todoName,
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
+        todoStatus: req.body.todoStatus,
           },
           include: [models.users]
         })
@@ -172,7 +184,7 @@ router.post('/todos', (req, res) => {
           if (created) {
             res.redirect('/todos');
           } else {
-            res.send('This album already exists!');
+            res.send('This todo already exists!');
           }
         
     });
