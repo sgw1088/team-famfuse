@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="card-container">
-            <h1>Login</h1>
+            <h2>Login</h2>
             <form id="login-form" noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>

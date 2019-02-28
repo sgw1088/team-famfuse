@@ -59,8 +59,10 @@ handleChange(event) {
   render() {
     console.log(this.state.todoData);
     if (this.state.todoData.length === 0) {
-      return <div>Nothing to do!
-<div>
+      return <div>
+  <div className ="card-container"><h3>Nothing to do!</h3>
+  <p> Get started below.</p></div>
+<div className="card-container">
     <form onSubmit={this.onSubmit}>
 <div>
    <label htmlFor="todoName">To Do Name: </label>

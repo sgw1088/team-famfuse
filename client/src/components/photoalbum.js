@@ -117,7 +117,7 @@ class PhotoAlbumComponent extends React.Component {
                  <div className="card-container"> 
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label htmlFor="Image"><h1>Upload Photo</h1></label><br />
+                    <label htmlFor="Image"><h2>Upload Photo</h2></label><br />
                     <input type="file" className="form-control-file" onChange={this.handleChange} name="file" id="image" required></input>
                 </div>
                 <button type="submit" >Submit</button>
@@ -126,14 +126,14 @@ class PhotoAlbumComponent extends React.Component {
         <br />
                 </div>
             <div className="photo-container">
-                <h1>My Photos</h1>
+                <h2>My Photos</h2>
                 <div className="familyImgsCon">
                     {myImage}
                 </div>
                 </div>
                 <br />
                 <div className="photo-container">
-                <h1>My Family's Photos</h1>
+                <h2>My Family's Photos</h2>
                 <div className="familyImgsCon">
                     {familyImage}
                 </div>

@@ -66,7 +66,8 @@ class Tododetails extends React.Component {
   <div>
   <UserMenu />
   </div>
-    
+    <div className="card-container">
+    <h3>Editing {this.state.todoData.todoName}</h3>
     <form onSubmit={this.onSubmit}>
  <div>
      <label htmlFor="todoName">To Do Name: </label>
@@ -93,6 +94,7 @@ class Tododetails extends React.Component {
   </div>
 
 </form>
+</div>
   </div>
 </div>
    
