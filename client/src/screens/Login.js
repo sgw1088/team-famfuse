@@ -4,10 +4,12 @@ import HomeMenu from '../components/homemenu';
 
 const Login = () => (
   <div>
-    
+    <div>
     <HomeMenu />
-    <h1>Login</h1>
+    </div>
+    <div>
     <LoginForm />
+    </div>
   </div>
 );
 

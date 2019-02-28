@@ -3,10 +3,12 @@ import HomeMenu from '../components/homemenu';
 
 
 const Home = () => (
-  <div>
+  
    
     <div>
      <HomeMenu />
+     
+     <div className="card-container">
      <h4>Keep Everyone On <br />
      The Same Page!</h4>
     <p>FamFuse keeps your family up to date and in touch on the go. <br />
@@ -15,6 +17,7 @@ const Home = () => (
    
     </div>
     </div>
+   
 );
 
 export default Home;

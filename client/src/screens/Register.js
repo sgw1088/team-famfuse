@@ -10,7 +10,7 @@ const Register = () => (
   <div>
 <HomeMenu /> 
 
-    <h3>Create New Account</h3>
+    
     <RegisterForm />
 
   </div>
