@@ -84,3 +84,24 @@ export const fetchMyImages = user => {
         return res.data;
     })
 }
+
+//Todos 
+export const fetchTodos = userId => {
+    return axios
+    .post(server + 'users/usertodos', {
+        userId: userId
+    }).then(res => {
+        console.log(res.data)
+        return res.data;
+        
+    })
+}
+export const newTodo = todo => {
+    return axios
+    .post(server + 'users/todos', {
+        userId: todo.userId,
+        todoName: todo.todoName,
+        todoDetails: todo.todoDetails,
+        dueDate: todo.dueDate
+    })
+}
