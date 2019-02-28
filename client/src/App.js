@@ -7,7 +7,6 @@ import Login from './screens/Login';
 import PhotoAlbum from './screens/PhotoAlbum';
 import Profile from './screens/Profile';
 import Register from './screens/Register';
-import Calendar from './screens/Calendar';
 import Logout from './components/logout';
 import Todos from './screens/Todos';
 import Todochild from './screens/todoschild';
@@ -16,40 +15,6 @@ import Tododetails from './components/tododetails';
 
 
 
-const MainMenu = () => {
-  window.ondeforeunload = () => {
-    localStorage.clear();
-  }
-  
-  return (
-
-  <div>
-    <Link to="/">
-      <button>Home</button>
-    </Link>
-    <Link to="/register">
-      <button>Register</button>
-    </Link>
-    <Link to="/login">
-      <button>Login</button>
-    </Link>
-    <Link to="/profile">
-      <button>Profile</button>
-    </Link>
-    <Link to="/photoalbum">
-      <button>Photo Album</button>
-    </Link>
-    <Link to="/todos">
-      <button>ToDos</button>
-    </Link>
-    <Link to="/calendar">
-      <button>Calendar</button>
-    </Link>
-    <Logout />
-   
-  </div>
-  );
-};
 
 class App extends Component {
   
@@ -58,20 +23,12 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to FamFuse!
-          </p>
-            <MainMenu />
-        </header>
-        
-        <div>
+   
+       <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile}/>
-          <Route exact path="/calendar" component={Calendar} />
           <Route exact path="/todos" component={Todochild}/>
           <Route exact path="/todos/:id" component={Tododetails}  />
           <Route exact path="/photoalbum" component={PhotoAlbum} />

@@ -140,31 +140,19 @@ router.get('/logout', function (req, res) {
 
 router.get('/profile/:id/todos', function(req, res, next) {
  
- models.users
- .findAll ({
-   where: {
-     userId: req.params.userId,
-   }
- })
- .spread(function(req, res, next) {
   models.todos
   .findAll({
     where: {
       deleted: null,
-    
      
-      
     },
- })
   
     include: [models.users]
   })
   .then(allTodos => {
     res.send(JSON.stringify(allTodos));
   })
-
-}
-);
+});
 
 
 router.post('/todos',  (req, res) => {

@@ -120,7 +120,7 @@ class PhotoAlbumComponent extends React.Component {
                     <label htmlFor="Image">Upload Photo</label><br />
                     <input type="file" className="form-control-file" onChange={this.handleChange} name="file" id="image" required></input>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" >Submit</button>
             </form>
         </div>
                 </div>

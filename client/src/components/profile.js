@@ -45,6 +45,7 @@ class ProfileComponent extends React.Component {
     
     render() {
         return (
+            
             <div>
                 <div>
                     <h1>{this.state.firstName} {this.state.lastName}'s Profile</h1>
