@@ -3,6 +3,7 @@ import axios from 'axios';
 import $ from 'jquery'; 
 import auth from '../components/auth';
 import { withRouter } from "react-router-dom";
+import UserMenu from '../components/usermenu';
 
 class Tododetails extends React.Component {
   state = {
@@ -62,7 +63,10 @@ class Tododetails extends React.Component {
   
       return <div key={this.state.todoData.todoId}>  
   <div>
-    <h3>Up Date This To Do</h3>
+  <div>
+  <UserMenu />
+  </div>
+    
     <form onSubmit={this.onSubmit}>
  <div>
      <label htmlFor="todoName">To Do Name: </label>
