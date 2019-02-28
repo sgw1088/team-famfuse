@@ -138,19 +138,28 @@ router.get('/logout', function (req, res) {
 
 // To DO CRUD
 
+<<<<<<< HEAD
 router.get('/profile/:id/todos', function(req, res, next) {
+=======
+router.post('/usertodos',  function(req, res, next) {
+>>>>>>> 9ab0ce850c138f1022645145834108d422ea0fe1
  
   models.todos
   .findAll({
     where: {
       deleted: null,
+<<<<<<< HEAD
      
     },
   
     include: [models.users]
+=======
+      userId: req.body.userId
+    }
+>>>>>>> 9ab0ce850c138f1022645145834108d422ea0fe1
   })
   .then(allTodos => {
-    res.send(JSON.stringify(allTodos));
+    res.send(allTodos);
   })
 });
 
@@ -160,19 +169,30 @@ router.post('/todos',  (req, res) => {
   models.todos
     .findOrCreate({
           where: {
+<<<<<<< HEAD
         userId: req.body.userId,
         todoName: req.body.todoName,
         todoDetails: req.body.todoDetails,
         dueDate: req.body.dueDate,
         todoStatus: req.body.todoStatus,
+=======
+            userId: req.body.userId,
+            todoName: req.body.todoName,
+            todoDetails: req.body.todoDetails,
+            dueDate: req.body.dueDate,
+>>>>>>> 9ab0ce850c138f1022645145834108d422ea0fe1
           },
           include: [models.users]
         })
         .spread(function(result, created) {
           if (created) {
-            res.redirect('/todos');
+            res.send(result)
           } else {
+<<<<<<< HEAD
             res.send('This todo already exists!');
+=======
+            res.send('');
+>>>>>>> 9ab0ce850c138f1022645145834108d422ea0fe1
           }
         
     });
