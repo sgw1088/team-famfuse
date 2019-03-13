@@ -33,6 +33,8 @@ class LoginForm extends React.Component {
     }
     render() {
         return (
+            <div className="card-container">
+            <h2>Login</h2>
             <form id="login-form" noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
@@ -42,8 +44,9 @@ class LoginForm extends React.Component {
                   <label htmlFor="password">Password</label>
                   <input type="password" className="form-control" name="password" id="password" placeholder="Password" value={this.state.password} onChange={this.handleChange}></input>
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" >Login</button>
             </form>
+            </div>
         )
     }
 }

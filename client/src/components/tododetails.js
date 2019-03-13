@@ -3,6 +3,7 @@ import axios from 'axios';
 import $ from 'jquery'; 
 import auth from '../components/auth';
 import { withRouter } from "react-router-dom";
+import UserMenu from '../components/usermenu';
 
 class Tododetails extends React.Component {
   state = {
@@ -62,7 +63,11 @@ class Tododetails extends React.Component {
   
       return <div key={this.state.todoData.todoId}>  
   <div>
-    <h3>Up Date This To Do</h3>
+  <div>
+  <UserMenu />
+  </div>
+    <div className="card-container">
+    <h3>Editing {this.state.todoData.todoName}</h3>
     <form onSubmit={this.onSubmit}>
  <div>
      <label htmlFor="todoName">To Do Name: </label>
@@ -77,15 +82,19 @@ class Tododetails extends React.Component {
      <input type="text" name="dueDate" id="dueDate" defaultValue={this.state.todoData.dueDate} />
  </div>
  <div>
-     <label htmlFor="todoStatus">Status: </label>
-     <input type="text" name="todoStatus" id="todoStatus" defaultValue={this.state.todoData.todoStatus}  />
- </div>
+        <label htmlFor="todoStatus">Status </label>
+        <select  name="todoStatus" id="todoStatus" defaultValue={this.state.todoData.todoStatus}>
+        <option value="pending" >Pending</option>
+        <option value="completed">Completed</option>
+        </select>
+    </div>
  <div>
      <button type="submit" id="submitButton">Update</button>
     <button onClick={this.onDelete} type="deleteButton" id="deleteButton">Delete</button>
   </div>
 
 </form>
+</div>
   </div>
 </div>
    

@@ -45,9 +45,11 @@ class ProfileComponent extends React.Component {
     
     render() {
         return (
+            
             <div>
-                <div>
-                    <h1>{this.state.firstName} {this.state.lastName}'s Profile</h1>
+                <div className="card-container">
+                    <h2>{this.state.firstName} {this.state.lastName}'s <br />
+                    Profile</h2>
                     <p><b>Email: </b> {this.state.email}</p>
                     <p><b>Family Code:</b> {this.state.familyCode} </p>
                 </div>

@@ -60,6 +60,8 @@ class RegisterForm extends React.Component {
     }
     render() {
         return (
+            <div className="card-container">
+            <h3>Create New Account</h3>
             <form id="signup" name="signup" noValidate onSubmit={this.onSubmit}>
           <div>
               <label htmlFor="firstName">First Name: </label>
@@ -96,6 +98,7 @@ class RegisterForm extends React.Component {
               <button type="submit">Submit</button>
           </div>
         </form>
+        </div>
         )
     }
 }

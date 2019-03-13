@@ -114,23 +114,29 @@ class PhotoAlbumComponent extends React.Component {
         return (
             <div>
                  <div>
-                 <div> 
+                 <div className="card-container"> 
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label htmlFor="Image">Upload Photo</label><br />
+                    <label htmlFor="Image"><h2>Upload Photo</h2></label><br />
                     <input type="file" className="form-control-file" onChange={this.handleChange} name="file" id="image" required></input>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" >Submit</button>
             </form>
         </div>
+        <br />
                 </div>
-                <h1>My Photos</h1>
+            <div className="photo-container">
+                <h2>My Photos</h2>
                 <div className="familyImgsCon">
                     {myImage}
                 </div>
-                <h1>My Family's Photos</h1>
+                </div>
+                <br />
+                <div className="photo-container">
+                <h2>My Family's Photos</h2>
                 <div className="familyImgsCon">
                     {familyImage}
+                </div>
                 </div>
             </div>
         )

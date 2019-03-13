@@ -1,11 +1,23 @@
 import React from 'react';
-import Users from '../components/users';
+import HomeMenu from '../components/homemenu';
+
 
 const Home = () => (
-  <div>
-    <h2>Home</h2>
-    <Users uri="http://localhost:3001/users" />
-  </div>
+  
+   
+    <div>
+     <HomeMenu />
+     
+     <div className="card-container">
+     <h4>Keep Everyone On <br />
+     The Same Page!</h4>
+    <p>FamFuse keeps your family up to date and in touch on the go. <br />
+    Features a to do list, a photo album and a status feed. 
+    </p>
+   
+    </div>
+    </div>
+   
 );
 
 export default Home;

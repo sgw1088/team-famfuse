@@ -138,41 +138,38 @@ router.get('/logout', function (req, res) {
 
 // To DO CRUD
 
-router.get('/todos',  function(req, res, next) {
+router.post('/usertodos',  function(req, res, next) {
  
   models.todos
   .findAll({
     where: {
       deleted: null,
-     
-      
-    },
-    include: [models.users]
+      userId: req.body.userId
+    }
   })
   .then(allTodos => {
-    res.send(JSON.stringify(allTodos));
+    res.send(allTodos);
   })
-
-}
-);
+});
 
 
-router.post('/todos', (req, res) => {
+router.post('/todos',  (req, res) => {
  
   models.todos
     .findOrCreate({
           where: {
-        todoName: req.body.todoName,
-        todoDetails: req.body.todoDetails,
-        dueDate: req.body.dueDate,
+            userId: req.body.userId,
+            todoName: req.body.todoName,
+            todoDetails: req.body.todoDetails,
+            dueDate: req.body.dueDate,
           },
           include: [models.users]
         })
         .spread(function(result, created) {
           if (created) {
-            res.redirect('/todos');
+            res.send(result)
           } else {
-            res.send('This album already exists!');
+            res.send('');
           }
         
     });
